@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Controle de Estoque</h1>
+        <div class="form">
+            <input type="text" id="product-name" placeholder="Nome do Produto">
+            <input type="number" id="product-quantity" placeholder="Quantidade">
+            <input type="date" id="expiry-date" placeholder="Data de Validade">
+            <button id="add-product-button">Adicionar Produto</button>
+        </div>
+        <div class="barcode-scanner">
+            <video id="barcode-video" width="300" height="200"></video>
+            <button id="start-scan-button">Iniciar Leitura do Código de Barras</button>
+        </div>
+        <div class="search">
+            <input type="text" id="search-term" placeholder="Buscar Produto">
+            <button id="search-button">Buscar</button>
+            <button id="toggle-visibility-button">Ocultar/Mostrar Produtos</button>
+        </div>
+        <div class="product-list">
+            <h2>Produtos</h2>
+            <ul id="product-list">
+                <!-- Lista de produtos será renderizada aqui -->
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
