@@ -1,5 +1,4 @@
 document.getElementById("add-product-button").addEventListener("click", addProduct);
-document.getElementById("start-scan-button").addEventListener("click", startBarcodeScanner);
 document.getElementById("toggle-visibility-button").addEventListener("click", toggleProductVisibility);
 document.getElementById("search-button").addEventListener("click", searchProducts);
 
@@ -26,7 +25,7 @@ function addProduct() {
             if (existingExpiryDate) {
                 existingExpiryDate.quantity += product.quantity;
             } else {
-                existingProduct.expiryDates.push({ date: expiryDate, quantity: parseInt(productQuantity) });
+                existingExpiryDates.push({ date: expiryDate, quantity: parseInt(productQuantity) });
             }
         } else {
             productList.push(product);
@@ -130,43 +129,6 @@ function countExpiringProducts() {
     });
 
     alert(`Total de produtos próximos da validade: ${expiringCount}`);
-}
-
-function startBarcodeScanner() {
-    Quagga.init({
-        inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: document.querySelector('#barcode-video'),
-            constraints: {
-                width: 300,
-                height: 200,
-                facingMode: "environment"
-            }
-        },
-        decoder: {
-            readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"]
-        }
-    }, function (err) {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        console.log("Initialization finished. Ready to start");
-        Quagga.start();
-    });
-
-    Quagga.onDetected(function (data) {
-        console.log(data);
-        const barcode = data.codeResult.code;
-        alert(`Código de barras lido: ${barcode}`);
-
-        // Aqui você pode buscar as informações do produto (nome, quantidade, validade) com base no código de barras lido
-        // Por simplicidade, vamos apenas adicionar um produto genérico
-        document.getElementById("product-name").value = "Produto Exemplo";
-        document.getElementById("product-quantity").value = 10;
-        document.getElementById("expiry-date").value = "2025-12-31";
-    });
 }
 
 function toggleProductVisibility() {
